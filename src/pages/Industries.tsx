@@ -11,6 +11,7 @@ const industries = [
     description: "Scale your product with autonomous AI agents and automated engineering workflows. We help startups and scale-ups build future-ready SaaS infrastructure.",
     challenges: ["Feature development bottlenecks", "User onboarding friction", "Infrastructure scalability", "Manual support overhead"],
     outcomes: ["Autonomous system integration", "Rapid product iteration", "Reduced operational costs", "Enhanced user activation"],
+    image: "/images/industries/saas-tech.jpeg"
   },
   {
     icon: LineChart,
@@ -18,6 +19,7 @@ const industries = [
     description: "Leverage AI-powered risk intelligence and fraud detection systems to protect assets and build regulatory trust.",
     challenges: ["Fraudulent activity", "Compliance complexity", "Risk assessment lag", "Data security threats"],
     outcomes: ["Real-time fraud prevention", "Automated compliance audits", "Predictive risk modelling", "Enterprise-grade security"],
+    image: "/images/industries/fintech.jpeg"
   },
   {
     icon: ShoppingBag,
@@ -25,6 +27,7 @@ const industries = [
     description: "Automate marketplace management and use AI-driven marketing systems to dominate platforms like Amazon, Flipkart, and beyond.",
     challenges: ["Manual catalog management", "Ad spend inefficiency", "Marketplace competition", "Customer engagement"],
     outcomes: ["Automated catalog sync", "AI-optimized ad performance", "Increased marketplace ROI", "Data-driven growth strategy"],
+    image: "/images/industries/ecommerce.jpeg"
   },
   {
     icon: Hotel,
@@ -32,6 +35,7 @@ const industries = [
     description: "Streamline operations with autonomous booking systems for hotels, auditoriums, and turf venues with integrated AI assistants.",
     challenges: ["Booking management complexity", "Customer support volume", "Inventory optimization", "Seasonal demand shifts"],
     outcomes: ["24/7 autonomous booking", "AI-powered guest support", "Optimized venue occupancy", "Automated revenue management"],
+    image: "/images/industries/hospitality.jpeg"
   },
   {
     icon: Stethoscope,
@@ -39,6 +43,7 @@ const industries = [
     description: "Deploy secure, AI-enabled patient management and appointment platforms that optimize clinic workflows and patient care.",
     challenges: ["Appointment scheduling gaps", "Patient record management", "Digital patient engagement", "Workflow inefficiencies"],
     outcomes: ["Optimized scheduling systems", "Secure digital health records", "Enhanced patient experience", "Streamlined clinic operations"],
+    image: "/images/industries/healthcare.jpeg"
   },
   {
     icon: Building,
@@ -46,16 +51,17 @@ const industries = [
     description: "Implement AI-driven route optimization and delivery management systems to reduce costs and improve service speed.",
     challenges: ["Route inefficiency", "Delivery tracking gaps", "Operational cost rising", "Fleet management overhead"],
     outcomes: ["AI-optimized routing", "Real-time delivery intelligence", "Reduced fuel and labor costs", "Improved fleet efficiency"],
+    image: "/images/industries/logistics.jpeg"
   },
 ];
 
 const Industries = () => {
   return (
-    <Layout>
+    <Layout enableSnap={true}>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white">
+      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white snap-start">
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A4133C]/10 rounded-full blur-3xl" />
         </div>
         <div className="relative container-max section-padding">
           <div className="max-w-3xl">
@@ -79,80 +85,90 @@ const Industries = () => {
       </section>
 
       {/* Industries Grid */}
-      <section className="py-24 bg-background">
-        <div className="container-max section-padding">
-          <div className="space-y-24">
-            {industries.map((industry, index) => (
-              <Reveal key={industry.title} delay={0.1}>
-                <div
-                  className={`grid lg:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? "" : ""
-                    }`}
-                >
-                  <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                      <industry.icon className="w-8 h-8 text-primary" />
-                    </div>
-                    <h2 className="text-2xl font-bold text-foreground mb-4">
-                      {industry.title}
-                    </h2>
-                    <p className="text-muted-foreground mb-8 leading-relaxed">
-                      {industry.description}
-                    </p>
+      {industries.map((industry, index) => (
+        <section key={industry.title} className={`py-24 ${index % 2 === 0 ? "bg-background" : "bg-muted"} snap-start`}>
+          <div className="container-max section-padding">
+            <Reveal key={industry.title} delay={0.1}>
+              <div
+                className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "" : ""
+                  }`}
+              >
+                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                    <industry.icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
+                    {industry.title}
+                  </h2>
+                  <p className="text-muted-foreground mb-8 leading-relaxed">
+                    {industry.description}
+                  </p>
 
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      <div>
-                        <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">
-                          Challenges We Address
-                        </h4>
-                        <ul className="space-y-2">
-                          {industry.challenges.map((challenge) => (
-                            <li key={challenge} className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <div className="w-1.5 h-1.5 rounded-full bg-destructive" />
-                              {challenge}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">
-                          Outcomes Delivered
-                        </h4>
-                        <ul className="space-y-2">
-                          {industry.outcomes.map((outcome) => (
-                            <li key={outcome} className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                              {outcome}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">
+                        Challenges We Address
+                      </h4>
+                      <ul className="space-y-2">
+                        {industry.challenges.map((challenge) => (
+                          <li key={challenge} className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <div className="w-1.5 h-1.5 rounded-full bg-destructive" />
+                            {challenge}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">
+                        Outcomes Delivered
+                      </h4>
+                      <ul className="space-y-2">
+                        {industry.outcomes.map((outcome) => (
+                          <li key={outcome} className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                            {outcome}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
+                </div>
 
-                  <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                    <div className="aspect-[4/3] rounded-2xl bg-muted border border-border flex items-center justify-center">
+                <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
+                  <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+                    <img
+                      src={industry.image}
+                      alt={industry.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      onError={(e) => {
+                        // Fallback to icon if image missing
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                      }}
+                    />
+                    <div className="hidden w-full h-full bg-muted flex items-center justify-center">
                       <industry.icon className="w-24 h-24 text-primary/20" />
                     </div>
                   </div>
                 </div>
-              </Reveal>
-            ))}
+              </div>
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-hero">
+      <section className="py-20 bg-gradient-hero snap-start">
         <div className="container-max section-padding text-center">
           <h2 className="text-3xl font-bold text-soft-gray mb-4">
-            Don't See Your Industry?
+            Your Sector, Optimized
           </h2>
           <p className="text-soft-gray/70 mb-8 max-w-xl mx-auto">
-            NorthMetriX is designed to scale across sectors. Contact us to discuss how we can support your specific needs.
+            See how NorthMetrix can be tailored to the specific needs of your industry.
           </p>
           <Button variant="hero" size="lg" asChild>
             <Link to="/contact">
-              Let's Talk
+              Contact Industry Specialist
               <ArrowRight className="ml-2" />
             </Link>
           </Button>

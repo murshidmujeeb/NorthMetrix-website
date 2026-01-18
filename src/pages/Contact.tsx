@@ -51,11 +51,11 @@ const Contact = () => {
   };
 
   return (
-    <Layout>
+    <Layout enableSnap={true}>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white">
+      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white snap-start">
         <div className="absolute inset-0">
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#A4133C]/10 rounded-full blur-3xl" />
         </div>
         <div className="relative container-max section-padding">
           <div className="max-w-3xl">
@@ -79,7 +79,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background snap-start">
         <div className="container-max section-padding">
           <Reveal delay={0.3}>
             <div className="grid lg:grid-cols-2 gap-16">
@@ -110,7 +110,7 @@ const Contact = () => {
                           id="name"
                           placeholder="Your name"
                           required
-                          className="bg-card"
+                          className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-500"
                         />
                       </div>
                       <div className="space-y-2">
@@ -137,7 +137,7 @@ const Contact = () => {
                     <div className="space-y-2">
                       <Label htmlFor="service">Service Type *</Label>
                       <Select required>
-                        <SelectTrigger className="bg-card">
+                        <SelectTrigger className="bg-neutral-900 border-neutral-800 text-white">
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>

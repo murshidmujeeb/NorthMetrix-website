@@ -33,11 +33,11 @@ const metrics = [
 
 const Platform = () => {
   return (
-    <Layout>
+    <Layout enableSnap={true}>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white">
+      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white snap-start">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#A4133C]/10 rounded-full blur-3xl" />
         </div>
         <div className="relative container-max section-padding">
           <div className="max-w-3xl">
@@ -69,7 +69,7 @@ const Platform = () => {
       </section>
 
       {/* Core Metrics */}
-      <section className="py-16 bg-background border-b border-border">
+      <section className="py-16 bg-background border-b border-border snap-start">
         <div className="container-max section-padding">
           <div className="grid md:grid-cols-3 gap-8">
             {metrics.map((metric) => (
@@ -88,7 +88,7 @@ const Platform = () => {
       </section>
 
       {/* Features */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background snap-start">
         <div className="container-max section-padding">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">

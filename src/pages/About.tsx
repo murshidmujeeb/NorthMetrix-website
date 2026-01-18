@@ -25,11 +25,11 @@ const values = [
 
 const About = () => {
   return (
-    <Layout>
+    <Layout enableSnap={true}>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white">
+      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white snap-start">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#A4133C]/10 rounded-full blur-3xl" />
         </div>
         <div className="relative container-max section-padding">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -60,7 +60,7 @@ const About = () => {
       </section>
 
       {/* Mission */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background snap-start">
         <div className="container-max section-padding">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
@@ -77,7 +77,7 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="py-24 bg-muted">
+      <section className="py-24 bg-muted snap-start">
         <div className="container-max section-padding">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl font-bold text-foreground mb-4">
@@ -110,7 +110,7 @@ const About = () => {
       </section>
 
       {/* Vision */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background snap-start">
         <div className="container-max section-padding">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -138,7 +138,7 @@ const About = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-hero">
+      <section className="py-20 bg-gradient-hero snap-start">
         <div className="container-max section-padding text-center">
           <h2 className="text-3xl font-bold text-soft-gray mb-4">
             Join Us on This Journey

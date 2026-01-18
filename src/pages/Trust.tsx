@@ -1,7 +1,7 @@
 import { Layout } from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Shield, Lock, Eye, CheckCircle, FileText, ArrowRight } from "lucide-react";
+import { Shield, Lock, Eye, CheckCircle, FileText, ArrowRight, FileCheck } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
 const principles = [
@@ -47,11 +47,11 @@ const policies = [
 
 const Trust = () => {
   return (
-    <Layout>
+    <Layout enableSnap={true}>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white">
+      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white snap-start">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#A4133C]/10 rounded-full blur-3xl" />
         </div>
         <div className="relative container-max section-padding">
           <div className="max-w-3xl">
@@ -75,7 +75,7 @@ const Trust = () => {
       </section>
 
       {/* Principles */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background snap-start">
         <div className="container-max section-padding">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <Reveal width="100%">
@@ -90,37 +90,21 @@ const Trust = () => {
             </Reveal>
           </div>
 
-          <div className="space-y-16">
+          <div className="grid md:grid-cols-3 gap-8">
             {principles.map((principle, index) => (
-              <Reveal key={principle.title} delay={0.1}>
+              <Reveal key={principle.title} delay={0.1 * index}>
                 <div
-                  className={`grid lg:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? "" : ""
-                    }`}
+                  className="p-8 rounded-2xl bg-card border border-border text-center"
                 >
-                  <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                      <principle.icon className="w-8 h-8 text-primary" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-foreground mb-4">
-                      {principle.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {principle.description}
-                    </p>
-                    <ul className="space-y-3">
-                      {principle.details.map((detail) => (
-                        <li key={detail} className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground">{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                    <principle.icon className="w-8 h-8 text-primary" />
                   </div>
-                  <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                    <div className="aspect-square max-w-md mx-auto rounded-2xl bg-muted border border-border flex items-center justify-center">
-                      <principle.icon className="w-32 h-32 text-primary/10" />
-                    </div>
-                  </div>
+                  <h3 className="text-xl font-semibold text-card-foreground mb-3">
+                    {principle.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {principle.description}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -129,60 +113,84 @@ const Trust = () => {
       </section>
 
       {/* Policies */}
-      <section className="py-16 bg-muted">
+      <section className="py-24 bg-muted snap-start">
         <div className="container-max section-padding">
-          <div className="text-center mb-12">
-            <Reveal width="100%">
-              <h2 className="text-2xl font-bold text-foreground mb-4">
-                Legal & Policies
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1} width="100%">
-              <p className="text-muted-foreground">
-                Read our policies to understand your rights and our obligations.
-              </p>
-            </Reveal>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-6 max-w-xl mx-auto">
-            {policies.map((policy, index) => (
-              <Reveal key={policy.name} delay={0.1 * index} width="100%">
-                <Link
-                  to={policy.href}
-                  className="group p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-all duration-300 flex items-center gap-4"
-                >
-                  <FileText className="w-6 h-6 text-primary" />
-                  <div>
-                    <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors">
-                      {policy.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">{policy.description}</p>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all ml-auto" />
-                </Link>
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <div>
+              <Reveal>
+                <h2 className="text-3xl font-bold text-foreground mb-6">
+                  Transparent Policies
+                </h2>
               </Reveal>
-            ))}
+              <Reveal delay={0.1}>
+                <p className="text-muted-foreground leading-relaxed mb-8">
+                  We believe in plain language and clear terms. Our policies are designed to protect you, not confuse you.
+                </p>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <div className="space-y-4">
+                  <Link to="/privacy" className="flex items-center justify-between p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
+                    <div className="flex items-center gap-3">
+                      <FileCheck className="w-5 h-5 text-primary" />
+                      <span className="font-semibold text-foreground">Privacy Policy</span>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                  </Link>
+                  <Link to="/terms" className="flex items-center justify-between p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
+                    <div className="flex items-center gap-3">
+                      <Shield className="w-5 h-5 text-primary" />
+                      <span className="font-semibold text-foreground">Terms of Service</span>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                  </Link>
+                  <Link to="/gdpr" className="flex items-center justify-between p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
+                    <div className="flex items-center gap-3">
+                      <Lock className="w-5 h-5 text-primary" />
+                      <span className="font-semibold text-foreground">GDPR & Compliance</span>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal delay={0.3}>
+              <div className="p-8 rounded-3xl bg-background border border-border">
+                <h3 className="text-xl font-bold text-foreground mb-4">
+                  Security Overview
+                </h3>
+                <p className="text-sm text-muted-foreground mb-6">
+                  We use industry-standard encryption and security measures to protect your data.
+                </p>
+                <ul className="space-y-3">
+                  {["TLS 1.3 Encryption", "24/7 Monitoring", "Regular Audits", "Data Backups", "Access Controls"].map((item) => (
+                    <li key={item} className="flex items-center gap-3 text-sm text-foreground">
+                      <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-hero">
+      <section className="py-20 bg-gradient-hero snap-start">
         <div className="container-max section-padding text-center">
-          <Reveal width="100%">
-            <h2 className="text-3xl font-bold text-soft-gray mb-4">
-              Questions About Our Practices?
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1} width="100%">
-            <p className="text-soft-gray/70 mb-8 max-w-xl mx-auto">
-              We're happy to discuss our approach to trust, security, and ethics. Reach out to our team.
-            </p>
-          </Reveal>
-          <Reveal delay={0.2} width="100%">
-            <Button variant="hero" size="lg" asChild>
-              <Link to="/contact">Contact Us</Link>
-            </Button>
-          </Reveal>
+          <h2 className="text-3xl font-bold text-soft-gray mb-4">
+            Have Questions?
+          </h2>
+          <p className="text-soft-gray/70 mb-8 max-w-xl mx-auto">
+            Our compliance team is available to answer any questions regarding our security and privacy practices.
+          </p>
+          <Button variant="hero" size="lg" asChild>
+            <Link to="/contact">
+              Contact Compliance Team
+              <ArrowRight className="ml-2" />
+            </Link>
+          </Button>
         </div>
       </section>
     </Layout>

@@ -59,18 +59,18 @@ export function InsightsSection() {
         <div className="grid md:grid-cols-3 gap-8">
           {insights.map((insight, index) => (
             <Reveal key={insight.title} delay={0.1 * index}>
-              <div className="group relative pt-8 border-t border-white/10 hover:border-blue-500 transition-all duration-300 h-full flex flex-col justify-between">
+              <div className="group relative pt-8 border-t border-white/10 hover:border-[#A4133C] transition-all duration-300 h-full flex flex-col justify-between">
 
                 <div>
                   {/* Type Badge */}
                   <div className="flex items-center gap-2 mb-6">
-                    <span className="text-xs font-bold text-blue-500 uppercase tracking-widest">
+                    <span className="text-xs font-bold text-[#A4133C] uppercase tracking-widest">
                       {insight.type}
                     </span>
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-2xl font-light text-white mb-4 group-hover:text-blue-500 transition-colors duration-300">
+                  <h3 className="text-2xl font-light text-white mb-4 group-hover:text-[#A4133C] transition-colors duration-300">
                     {insight.title}
                   </h3>
                   <p className="text-white/60 leading-relaxed font-light mb-8">
@@ -82,7 +82,7 @@ export function InsightsSection() {
                 {!insight.coming && (
                   <Link
                     to="/insights"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-blue-500 transition-all duration-300 uppercase tracking-widest"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#A4133C] transition-all duration-300 uppercase tracking-widest"
                   >
                     Read Article
                     <ArrowRight className="w-4 h-4" />

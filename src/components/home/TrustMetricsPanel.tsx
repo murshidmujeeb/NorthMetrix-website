@@ -1,28 +1,35 @@
 import { Shield, Award, CheckCircle, TrendingUp } from "lucide-react";
 import { MotionWrapper, StaggerContainer, StaggerItem } from "@/components/ui/motion-wrapper";
+import { CountUp } from "@/components/ui/CountUp";
 
 const metrics = [
   {
     icon: Shield,
-    value: "99.9%",
+    value: 99.9,
+    suffix: "%",
     label: "Uptime SLA",
     description: "Enterprise-grade reliability",
+    decimals: 1,
   },
   {
     icon: Award,
-    value: "4.8/5",
+    value: 4.8,
+    suffix: "/5",
     label: "Customer Rating",
     description: "Based on 2,400+ reviews",
+    decimals: 1,
   },
   {
     icon: TrendingUp,
-    value: "340+",
+    value: 340,
+    suffix: "+",
     label: "Enterprise Clients",
     description: "Fortune 500 companies",
   },
   {
     icon: CheckCircle,
-    value: "50M+",
+    value: 50,
+    suffix: "M+",
     label: "Data Points Daily",
     description: "Real-time processing",
   },
@@ -37,30 +44,37 @@ const certifications = [
 
 export function TrustMetricsPanel() {
   return (
-    <section className="py-16 bg-card border-y border-border">
+    <section className="py-24 bg-black text-white border-y border-white/10">
       <div className="container-max section-padding">
         <MotionWrapper>
-          <div className="text-center mb-12">
-            <span className="text-sm font-medium text-primary uppercase tracking-wider">
+          <div className="text-center mb-16">
+            <span className="text-sm font-bold text-[#A4133C] uppercase tracking-widest">
               Trust & Compliance
             </span>
-            <h2 className="text-2xl font-bold text-off-white mt-2">
+            <h2 className="text-3xl sm:text-5xl font-light text-white mt-4 tracking-tight">
               Enterprise-Grade Security & Performance
             </h2>
           </div>
         </MotionWrapper>
 
         {/* Metrics Grid */}
-        <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {metrics.map((metric) => (
             <StaggerItem key={metric.label}>
-              <div className="text-center p-6 rounded-xl bg-secondary/50 border border-border hover:border-primary/20 transition-colors">
-                <div className="w-12 h-12 mx-auto rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <metric.icon className="w-6 h-6 text-primary" />
+              <div className="text-center p-8 rounded-none bg-[#0A0A0A] border border-white/10 hover:border-[#A4133C] transition-colors duration-300 group">
+                <div className="w-14 h-14 mx-auto mb-6 flex items-center justify-center rounded-full bg-white/5 group-hover:bg-[#A4133C]/20 transition-colors">
+                  <metric.icon className="w-7 h-7 text-white/50 group-hover:text-[#A4133C] transition-colors" />
                 </div>
-                <p className="text-3xl font-bold text-off-white mb-1">{metric.value}</p>
-                <p className="text-sm font-medium text-soft-gray mb-1">{metric.label}</p>
-                <p className="text-xs text-soft-gray/60">{metric.description}</p>
+                <div className="text-4xl font-bold text-white mb-2">
+                  <CountUp
+                    value={metric.value}
+                    suffix={metric.suffix}
+                    decimals={metric.decimals}
+                    start={metric.value * 0.5} // Start from 50% of the value for all metrics
+                  />
+                </div>
+                <p className="text-lg font-medium text-white mb-2">{metric.label}</p>
+                <p className="text-sm text-white/50 leading-relaxed font-light">{metric.description}</p>
               </div>
             </StaggerItem>
           ))}
@@ -68,15 +82,15 @@ export function TrustMetricsPanel() {
 
         {/* Certifications Bar */}
         <MotionWrapper delay={0.3}>
-          <div className="flex flex-wrap justify-center gap-4 lg:gap-8">
+          <div className="flex flex-wrap justify-center gap-6">
             {certifications.map((cert) => (
               <div
                 key={cert.name}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/30 border border-border"
+                className="flex items-center gap-3 px-6 py-3 rounded-full bg-transparent border border-white/10 hover:border-[#A4133C] transition-colors duration-300"
               >
-                <CheckCircle className="w-4 h-4 text-teal-accent" />
-                <span className="text-sm font-medium text-soft-gray">{cert.name}</span>
-                <span className="text-xs text-primary font-semibold">{cert.status}</span>
+                <CheckCircle className="w-4 h-4 text-[#A4133C]" />
+                <span className="text-sm font-medium text-white/70">{cert.name}</span>
+                <span className="text-xs text-[#A4133C] font-bold uppercase tracking-wider">{cert.status}</span>
               </div>
             ))}
           </div>

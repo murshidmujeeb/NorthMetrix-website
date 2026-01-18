@@ -6,25 +6,20 @@ import logo from "@/assets/logo.svg";
 
 export function HeroSection() {
   return (
-    <section className="relative h-screen flex items-center bg-black overflow-hidden px-6 lg:px-20">
-      {/* Background/Overlay */}
-      <div className="absolute inset-0 bg-black z-0" />
+    <section className="relative h-screen flex items-center bg-transparent overflow-hidden px-6 lg:px-20">
+      {/* Background/Overlay - Handled globally by ScrollLogoAnimation */}
 
-      {/* Massive Animated Logo Watermark */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-        animate={{ opacity: 0.15, scale: 1, rotate: 0 }}
-        transition={{ duration: 2, ease: "circOut" }}
-        className="absolute -right-20 lg:right-0 top-1/2 -translate-y-1/2 translate-x-1/4 z-0 pointer-events-none"
-      >
-        <img src={logo} alt="" className="w-[100vw] lg:w-[60vw] max-w-[1000px] h-auto invert brightness-0 grayscale opacity-100" />
-      </motion.div>
+      {/* Background/Overlay - Handled globally or by ScrollLogoAnimation */}
+      {/* <div className="absolute inset-0 bg-black z-0" /> */ /* We can keep purely local bg if needed, but ScrollLogoAnimation handles the main bg */}
+
+      {/* Logo Removed as per request */}
 
       <div className="relative z-10 w-full max-w-[1666px] mx-auto grid lg:grid-cols-2 gap-12 items-center text-left">
         <div className="space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8 }}
           >
             <span className="text-white/60 uppercase tracking-[0.2em] text-sm">
@@ -34,7 +29,8 @@ export function HeroSection() {
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl sm:text-6xl lg:text-8xl font-light text-white leading-[1.1] tracking-tight mix-blend-difference"
           >
@@ -44,7 +40,8 @@ export function HeroSection() {
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg text-white/70 max-w-xl leading-relaxed font-light"
           >
@@ -53,7 +50,8 @@ export function HeroSection() {
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="pt-8"
           >

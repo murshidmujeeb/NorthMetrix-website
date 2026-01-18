@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.svg"; // Updated logo path
 import { motion } from "framer-motion";
+import { ServicesMenu } from "./ServicesMenu";
 
 const navigation = [
   { name: "Platform", href: "/platform" },
-  { name: "Services", href: "/services" },
+  { name: "Services", href: "/services", hasDropdown: true },
   { name: "Industries", href: "/industries" },
   { name: "Insights", href: "/insights" },
   { name: "About", href: "/about" },
@@ -17,26 +18,34 @@ const navigation = [
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    // Initial check
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Remove location dependency as window scroll is global
 
   const isActive = (href: string) => location.pathname === href;
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-black/90 backdrop-blur-md border-b border-white/10 py-4"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || servicesOpen
+        ? "bg-black/10 backdrop-blur-xl backdrop-saturate-150 border-b border-white/5 py-4 shadow-lg"
         : "bg-transparent py-6"
         }`}
+      onMouseLeave={() => setServicesOpen(false)}
     >
-      <nav className="container-max section-padding">
+      <nav className="container-max section-padding relative z-50">
         <div className="flex items-center justify-between ">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group relative z-50">
@@ -50,18 +59,24 @@ export function Header() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navigation.map((item) => (
-              <Link
+              <div
                 key={item.name}
-                to={item.href}
-                className={`text-sm tracking-widest uppercase font-medium transition-colors duration-300 relative group ${isActive(item.href)
-                  ? "text-blue-500" // Active state
-                  : "text-white/60 hover:text-white" // Inactive state
-                  }`}
+                className="relative"
+                onMouseEnter={() => setServicesOpen(!!item.hasDropdown)}
+                onClick={() => setServicesOpen(false)}
               >
-                {item.name}
-                <span className={`absolute left-0 bottom-0 w-full h-[1px] bg-blue-500 transform transition-transform duration-300 origin-left ${isActive(item.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                  }`} />
-              </Link>
+                <Link
+                  to={item.href}
+                  className={`text-sm tracking-widest uppercase font-medium transition-colors duration-300 relative group flex items-center gap-1 ${isActive(item.href) || (item.hasDropdown && servicesOpen)
+                    ? "text-[#A4133C]" // Active state
+                    : "text-white/60 hover:text-white" // Inactive state
+                    }`}
+                >
+                  {item.name}
+                  <span className={`absolute left-0 bottom-0 w-full h-[1px] bg-[#A4133C] transform transition-transform duration-300 origin-left ${isActive(item.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`} />
+                </Link>
+              </div>
             ))}
           </div>
 
@@ -110,6 +125,9 @@ export function Header() {
           </div>
         )}
       </nav>
+
+      {/* Services Dropdown Menu */}
+      <ServicesMenu isOpen={servicesOpen} onClose={() => setServicesOpen(false)} />
     </header>
   );
 }

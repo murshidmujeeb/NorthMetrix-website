@@ -66,9 +66,9 @@ const Insights = () => {
   const regularPosts = insights.filter(i => !i.featured);
 
   return (
-    <Layout>
+    <Layout enableSnap={true}>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white">
+      <section className="pt-32 pb-20 bg-black relative overflow-hidden text-white snap-start">
         <div className="absolute inset-0">
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
         </div>
@@ -95,7 +95,7 @@ const Insights = () => {
 
       {/* Featured Post */}
       {featuredPost && (
-        <section className="py-16 bg-background border-b border-border">
+        <section className="py-16 bg-background border-b border-border snap-start">
           <div className="container-max section-padding">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="aspect-[16/10] rounded-2xl bg-muted border border-border flex items-center justify-center">
@@ -130,7 +130,7 @@ const Insights = () => {
       )}
 
       {/* All Posts */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background snap-start">
         <div className="container-max section-padding">
           <Reveal>
             <h2 className="text-2xl font-bold text-foreground mb-8">All Posts</h2>
@@ -173,7 +173,7 @@ const Insights = () => {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-20 bg-muted">
+      <section className="py-20 bg-muted snap-start">
         <div className="container-max section-padding text-center">
           <h2 className="text-2xl font-bold text-foreground mb-4">
             Stay Updated

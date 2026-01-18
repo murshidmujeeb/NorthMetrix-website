@@ -21,38 +21,38 @@ const problems = [
 
 export function ProblemSection() {
   return (
-    <section className="py-24 bg-card">
+    <section className="py-32 bg-black text-white">
       <div className="container-max section-padding">
         {/* Section Header */}
-        <MotionWrapper className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-off-white mb-4">
-            Growth Without Clarity Is Risky
+        <MotionWrapper className="text-center max-w-3xl mx-auto mb-20">
+          <h2 className="text-4xl sm:text-6xl font-light mb-6 tracking-tight">
+            Growth Without Clarity Is <span className="text-[#A4133C]">Risky.</span>
           </h2>
-          <p className="text-lg text-soft-gray">
+          <p className="text-xl text-white/60 font-light leading-relaxed">
             Most businesses operate on assumptions. NorthMetriX brings precision.
           </p>
         </MotionWrapper>
 
         {/* Problem Cards */}
-        <StaggerContainer className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <StaggerContainer className="grid md:grid-cols-3 gap-8">
           {problems.map((problem) => (
             <StaggerItem key={problem.title}>
-              <div className="group relative p-8 rounded-2xl bg-secondary border border-border hover:border-primary/30 transition-all duration-300">
+              <div className="group relative p-10 h-full bg-[#0A0A0A] border border-white/10 hover:border-[#A4133C] transition-all duration-500">
                 {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-destructive/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <problem.icon className="w-7 h-7 text-destructive" />
+                <div className="w-16 h-16 rounded-none bg-[#A4133C]/10 flex items-center justify-center mb-8 border border-[#A4133C]/20 group-hover:bg-[#A4133C] transition-colors duration-500">
+                  <problem.icon className="w-8 h-8 text-[#A4133C] group-hover:text-white transition-colors duration-500" />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-semibold text-off-white mb-3">
+                <h3 className="text-2xl font-medium text-white mb-4">
                   {problem.title}
                 </h3>
-                <p className="text-soft-gray leading-relaxed">
+                <p className="text-white/50 leading-relaxed font-light">
                   {problem.description}
                 </p>
 
-                {/* Decorative Line */}
-                <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-border to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Decorative Corner */}
+                <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-[#A4133C]/0 group-hover:border-[#A4133C] transition-colors duration-500" />
               </div>
             </StaggerItem>
           ))}

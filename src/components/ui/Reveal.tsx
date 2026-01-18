@@ -9,12 +9,14 @@ interface RevealProps {
 
 export const Reveal = ({ children, width = "fit-content", delay = 0 }: RevealProps) => {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const isInView = useInView(ref, { once: false, margin: "-50px" });
     const mainControls = useAnimation();
 
     useEffect(() => {
         if (isInView) {
             mainControls.start("visible");
+        } else {
+            mainControls.start("hidden");
         }
     }, [isInView, mainControls]);
 
